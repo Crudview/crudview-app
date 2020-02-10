@@ -22,11 +22,23 @@ export const Login = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		dispatch(UserActions.loginUserToDB(loginInput));
+		setLoginInput({
+			username: "",
+			password: ""
+		});
 		props.history.push("/");
 	};
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
+		<div className="form-container">
+			<h1
+				style={{
+					textAlign: "center",
+					color: " #AE0127"
+				}}
+			>
+				Login
+			</h1>
+			<form className="user-forms" onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="Username"
