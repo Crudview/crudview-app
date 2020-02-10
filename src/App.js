@@ -16,7 +16,7 @@ function App() {
 	return (
 		<div className="App">
 			<NavBarContainer />
-			<HomePage />
+			{/* <HomePage /> */}
 			<Routes />
 		</div>
 	);

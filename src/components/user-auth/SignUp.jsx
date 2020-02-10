@@ -8,6 +8,7 @@ import "./UserAuth.scss";
 
 export const SignUp = props => {
 	const dispatch = useDispatch();
+
 	const [userInput, setUserInput] = useState({
 		username: "",
 		password: ""

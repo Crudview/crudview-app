@@ -1,0 +1,43 @@
+.nav-bar {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 100px;
+	a {
+		.logo {
+			color: crimson;
+			font-weight: bolder;
+			font-style: oblique;
+		}
+		text-decoration: none;
+	}
+
+	div {
+		ul {
+			margin-top: 15px;
+			button {
+				background: crimson;
+				margin-left: 40px;
+				border-radius: 20px;
+				a {
+					color: whitesmoke;
+					text-decoration: none;
+
+					li {
+						list-style: none;
+						padding: 10px 30px;
+					}
+					li:hover {
+						color: crimson;
+					}
+				}
+
+				a:hover {
+					text-decoration: none;
+				}
+			}
+			button:hover {
+				color: crimson;
+			}
+		}
+	}
+}
