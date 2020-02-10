@@ -24,24 +24,36 @@ export const SignUp = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		dispatch(userActions.newUserToDB(userInput));
+		setUserInput({
+			username: "",
+			password: ""
+		});
 		props.history.push("/");
 	};
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
+		<div className="form-container">
+			<h1
+				style={{
+					textAlign: "center",
+					color: " #AE0127"
+				}}
+			>
+				Signup
+			</h1>
+			<form className="user-forms" onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="Username"
 					name="username"
 					value={userInput.username}
-					handleChange={handleChange}
+					onChange={handleChange}
 				/>
 				<input
 					type="text"
 					placeholder="Password"
 					name="password"
 					value={userInput.password}
-					handleChange={handleChange}
+					onChange={handleChange}
 				/>
 				<Button variant="outlined" type="submit">
 					Signup

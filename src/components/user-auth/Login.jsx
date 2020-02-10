@@ -44,14 +44,14 @@ export const Login = props => {
 					placeholder="Username"
 					name="username"
 					value={loginInput.username}
-					handleChange={handleChange}
+					onChange={handleChange}
 				/>
 				<input
-					type="text"
+					type="password"
 					placeholder="Password"
 					name="password"
 					value={loginInput.password}
-					handleChange={handleChange}
+					onChange={handleChange}
 				/>
 				<Button variant="outlined" type="submit">
 					Login
