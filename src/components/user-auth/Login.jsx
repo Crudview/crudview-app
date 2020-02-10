@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
-import UserActions from "../../actions/loginReducer";
+import UserActions from "../../actions/loginAction";
 
 import "./UserAuth.scss";
 
