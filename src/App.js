@@ -5,6 +5,7 @@ import { NavBarContainer } from "./components/nav-bar/NavBarContainer";
 // import { HomePage } from "./components/HomePage";
 import Routes from "./Routes";
 import userActions from "./actions/loginAction";
+import restaurantActions from "./actions/restaurantActions";
 import "./App.scss";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
 	useEffect(() => {
 		if (localStorage.token) {
 			dispatch(userActions.persistUser(currentUser));
+			dispatch(restaurantActions.fetchRestaurants());
 		}
 	}, [currentUser, dispatch, loggedIn]);
 
