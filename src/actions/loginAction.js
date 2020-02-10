@@ -2,7 +2,7 @@
 
 const BASE_URL = "http://localhost:3001";
 const USERS_URL = BASE_URL + "/users";
-const PERSIST_URL = BASE_URL + "/persist";
+const PERSIST_URL = BASE_URL + "/auth";
 const LOGIN_URL = BASE_URL + "/login";
 // update
 const SPECIFIC_USER_URL = id => USERS_URL + "/" + id;
@@ -17,6 +17,11 @@ const setUserActions = userObj => ({
 const setClearUser = () => ({
 	type: "CLEAR_USER"
 });
+
+// const isLoggedIn = isLoggedIn => ({
+// 	type: "LOGGED_IN",
+// 	payload: !isLoggedIn
+// });
 
 // bind Action Creators
 
@@ -34,6 +39,7 @@ const newUserToDB = userObj => dispatch => {
 		.then(res => res.json())
 		.then(data => {
 			dispatch(setUserActions(userObj));
+			dispatch();
 			localStorage.setItem("token", data.token);
 		});
 };
@@ -75,9 +81,14 @@ const logoutUser = () => dispatch => {
 	localStorage.clear();
 };
 
+// const persistLogin = loggedIn => dispatch => {
+// 	dispatch(isLoggedIn(loggedIn));
+// };
+
 export default {
 	newUserToDB,
 	loginUserToDB,
 	persistUser,
 	logoutUser
+	// persistLogin
 };

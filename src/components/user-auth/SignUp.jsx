@@ -49,7 +49,7 @@ export const SignUp = props => {
 					onChange={handleChange}
 				/>
 				<input
-					type="text"
+					type="password"
 					placeholder="Password"
 					name="password"
 					value={userInput.password}

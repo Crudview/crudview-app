@@ -1,18 +1,17 @@
 const initialState = {
-	currentUser: {},
-	isLoggedIn: false
+	currentUser: {}
 };
 
 export default (state = initialState, { type, payload }) => {
 	switch (type) {
 		case "SET_USER":
-			return { ...state, ...payload };
+			return { ...state, currentUser: payload };
 		case "CLEAR_USER":
 			return { ...state, currentUser: {} };
 		case "LOGGED_IN":
 			return {
 				...state,
-				...payload
+				isLoggedIn: payload
 			};
 		default:
 			return state;
