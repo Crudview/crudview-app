@@ -7,6 +7,7 @@ export const HomePage = () => {
 			<h1
 				style={{
 					textAlign: "center",
+					marginLeft: "80px",
 					color: "crimson"
 				}}
 			>

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { NavBarContainer } from "./components/nav-bar/NavBarContainer";
 // import { HomePage } from "./components/HomePage";
@@ -20,6 +20,7 @@ const App = () => {
 	return (
 		<div className="App">
 			<NavBarContainer />
+
 			<Routes />
 		</div>
 	);
