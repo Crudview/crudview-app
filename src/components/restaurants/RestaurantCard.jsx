@@ -1,5 +1,7 @@
 import React from "react";
+import { RestaurantPage } from "./RestaurantPage";
 import { makeStyles, Grid, Button } from "@material-ui/core";
+import { Link, Route } from "react-router-dom";
 
 const useStyles = makeStyles({
 	root: {
@@ -26,11 +28,7 @@ const useStyles = makeStyles({
 });
 export const RestaurantCard = props => {
 	const classes = useStyles();
-	console.log("props: ", props);
 
-	const handleClick = () => {
-		props.history.push(`/restaurants/${props.restaurant.id}`);
-	};
 	return (
 		<div>
 			<Grid container className={classes.root} spacing={1}>
@@ -40,12 +38,16 @@ export const RestaurantCard = props => {
 					src={props.restaurant.image_url}
 					alt={props.restaurant.name}
 				/>
-				<Button
-					onClick={handleClick}
-					className={classes.button}
-					variant="outlined"
-				>
-					Restaurant Page
+				<Button className={classes.button} variant="outlined">
+					<Link
+						style={{
+							textDecoration: "none",
+							fontWeight: "bold"
+						}}
+						to={`/restaurants/${props.restaurant.id}`}
+					>
+						Restaurant Page
+					</Link>
 				</Button>
 			</Grid>
 		</div>
