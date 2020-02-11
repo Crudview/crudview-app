@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
-import UserActions from "../../actions/loginAction";
+import userActions from "../../actions/loginAction";
 
 import "./UserAuth.scss";
 
@@ -21,7 +21,8 @@ export const Login = props => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		dispatch(UserActions.loginUserToDB(loginInput));
+		dispatch(userActions.loginUserToDB(loginInput));
+
 		setLoginInput({
 			username: "",
 			password: ""

@@ -8,13 +8,15 @@ import "./NavBar.scss";
 
 export const NavBar = () => {
 	const currentUser = useSelector(state => state.login.currentUser);
+
 	const dispatch = useDispatch();
 	const handleLogOut = () => {
 		dispatch(userActions.logoutUser());
 	};
+
 	return (
 		<div>
-			{currentUser.username ? (
+			{Object.keys(currentUser).length > 0 ? (
 				<ul>
 					<Button onClick={handleLogOut} variant="outlined">
 						<Link to="/login">

@@ -1,94 +1,75 @@
-//  API Endpoints
-
 const BASE_URL = "http://localhost:3001";
 const USERS_URL = BASE_URL + "/users";
 const PERSIST_URL = BASE_URL + "/auth";
 const LOGIN_URL = BASE_URL + "/login";
-// update
 const SPECIFIC_USER_URL = id => USERS_URL + "/" + id;
 
-// actions
-
-const setUserActions = userObj => ({
+const setUserAction = userObj => ({
 	type: "SET_USER",
 	payload: userObj
 });
 
-const setClearUser = () => ({
-	type: "CLEAR_USER"
+const clearUserAction = () => ({
+	type: "CLEAR_USER",
+	payload: {}
 });
 
-// const isLoggedIn = isLoggedIn => ({
-// 	type: "LOGGED_IN",
-// 	payload: !isLoggedIn
-// });
-
-// bind Action Creators
+// Fetch
 
 const newUserToDB = userObj => dispatch => {
-	let config = {
+	const config = {
 		method: "POST",
 		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json"
+			"Content-Type": "application/json"
 		},
 		body: JSON.stringify(userObj)
 	};
-
 	fetch(USERS_URL, config)
-		.then(res => res.json())
+		.then(r => r.json())
 		.then(data => {
-			dispatch(setUserActions(userObj));
-			dispatch();
+			dispatch(setUserAction(data.user));
 			localStorage.setItem("token", data.token);
 		});
 };
 
-const loginUserToDB = userObj => dispatch => {
-	let config = {
+const loginUserToDB = userCredentials => dispatch => {
+	const config = {
 		method: "POST",
 		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json"
+			"Content-Type": "application/json"
 		},
-		body: JSON.stringify(userObj)
+		body: JSON.stringify(userCredentials)
 	};
-
 	fetch(LOGIN_URL, config)
-		.then(res => res.json())
+		.then(r => r.json())
 		.then(data => {
-			dispatch(setUserActions(userObj));
+			dispatch(setUserAction(data.user));
 			localStorage.setItem("token", data.token);
 		});
 };
 
-const persistUser = userObj => dispatch => {
-	let config = {
+const persistUser = () => dispatch => {
+	const config = {
 		method: "GET",
 		headers: {
-			Authorization: `bearer ${localStorage.token}`
+			Authorization: `bearer ` + localStorage.token
 		}
 	};
 	fetch(PERSIST_URL, config)
-		.then(res => res.json())
-		.then(data => {
-			dispatch(setUserActions(userObj));
+		.then(r => r.json())
+		.then(userInstance => {
+			dispatch(setUserAction(userInstance));
 		});
 };
 
 const logoutUser = () => dispatch => {
-	dispatch(setClearUser());
+	dispatch(clearUserAction());
 	localStorage.clear();
 };
-
-// const persistLogin = loggedIn => dispatch => {
-// 	dispatch(isLoggedIn(loggedIn));
-// };
 
 export default {
 	newUserToDB,
 	loginUserToDB,
 	persistUser,
 	logoutUser
-	// persistLogin
 };

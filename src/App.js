@@ -10,19 +10,16 @@ import "./App.scss";
 
 const App = () => {
 	const dispatch = useDispatch();
-	const currentUser = useSelector(state => state.login.currentUser);
-	const loggedIn = useSelector(state => state.login.isLoggedIn);
 	useEffect(() => {
 		if (localStorage.token) {
-			dispatch(userActions.persistUser(currentUser));
+			dispatch(userActions.persistUser());
 			dispatch(restaurantActions.fetchRestaurants());
 		}
-	}, [currentUser, dispatch, loggedIn]);
+	}, [dispatch]);
 
 	return (
 		<div className="App">
 			<NavBarContainer />
-			{/* <HomePage /> */}
 			<Routes />
 		</div>
 	);
