@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "@material-ui/core";
+
+import reviewActions from '../../actions/ReviewsAction'
+
 import "../user-auth/UserAuth.scss";
 
 const ReviewsForm = props => {
