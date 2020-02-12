@@ -2,8 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { makeStyles, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import restaurantActions from "../../actions/restaurantActions";
 
-import ReviewsContainer from "./ReviewsContainer";
 const useStyles = makeStyles({
 	root: {
 		margin: "60px auto 0 100px ",
@@ -41,11 +42,14 @@ const useStyles = makeStyles({
 // phone: "(212) 980-7909"
 
 export const RestaurantPage = props => {
+	const dispatch = useDispatch();
 	const classes = useStyles();
 	let paramsId = parseInt(props.match.params.id, 10);
 	const restaurants = useSelector(state => state.restaurant.restaurants);
 	let restaurant = restaurants.filter(restaurant => restaurant.id === paramsId);
-	console.log(paramsId, restaurants, restaurant);
+	const getCurrentRestaurant = restaurantObj => {
+		dispatch(restaurantActions.getCurrentRestaurant(restaurantObj));
+	};
 
 	const renderPage = () => {
 		return restaurant.map(restaurant => {
@@ -61,7 +65,11 @@ export const RestaurantPage = props => {
 					<p className={classes.info}>Price: {restaurant.price}</p>
 					<p className={classes.info}>Address: {restaurant.address}</p>
 					<p className={classes.info}>Phone: {restaurant.phone}</p>
-					<Button className={classes.button} variant="outlined">
+					<Button
+						onClick={() => getCurrentRestaurant(restaurant)}
+						className={classes.button}
+						variant="outlined"
+					>
 						<Link
 							style={{
 								textDecoration: "none",

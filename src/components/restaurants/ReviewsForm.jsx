@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
 
-import reviewActions from '../../actions/ReviewsAction'
+import reviewActions from "../../actions/ReviewsAction";
 
 import "../user-auth/UserAuth.scss";
 
 const ReviewsForm = props => {
+	const dispatch = useDispatch();
+	const currentUser = useSelector(state => state.login.currentUser);
+	const curentRestaurant = useSelector(
+		state => state.restaurant.currentRestaurant
+	);
 	const [userReview, setUserReview] = useState({
 		comment: ""
 	});
@@ -17,8 +22,13 @@ const ReviewsForm = props => {
 			...userReview,
 			[e.target.name]: e.target.value
 		});
+		console.log(userReview);
 	};
-	const handleSubmit = () => {
+	const handleSubmit = e => {
+		e.preventDefault();
+		dispatch(
+			reviewActions.postReviews(userReview, currentUser, curentRestaurant)
+		);
 		props.history.push("/restaruants/:id");
 	};
 	return (

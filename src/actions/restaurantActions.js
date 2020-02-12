@@ -8,6 +8,10 @@ const getRestaurantsFromDB = restaurants => ({
 	payload: restaurants
 });
 
+const currentRestaurant = restaurantObj => ({
+	type: "GET_CURRENT_RESTAURANT",
+	payload: restaurantObj
+});
 //  bind action creators
 
 const fetchRestaurants = () => dispatch => {
@@ -27,6 +31,11 @@ const fetchRestaurants = () => dispatch => {
 		});
 };
 
+const getCurrentRestaurant = restaurantObj => dispatch => {
+	dispatch(currentRestaurant(restaurantObj));
+};
+
 export default {
-	fetchRestaurants
+	fetchRestaurants,
+	getCurrentRestaurant
 };

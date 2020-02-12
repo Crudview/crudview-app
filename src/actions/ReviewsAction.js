@@ -22,15 +22,19 @@ const getReviews = reviewObj => dispatch => {
 		.then(data => dispatch(setReviews(data)));
 };
 
-const postReviews = reviewObj => dispatch => {
+const postReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
 	let config = {
-		method: "GET",
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 			Accept: "application/json",
 			Authorization: `Bearer ${localStorage.token}`
 		},
-		body: JSON.stringify(reviewObj)
+		body: JSON.stringify({
+			comment: reviewObj.comment,
+			user_id: currentUser.id,
+			restaurant_id: currentRestaurant.id
+		})
 	};
 	fetch(BASE_URL, config)
 		.then(res => res.json())
