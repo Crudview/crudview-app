@@ -7,6 +7,7 @@ import { SignUp } from "./components/user-auth/SignUp";
 import { RestaurantContainer } from "./components/restaurants/RestaurantContainer";
 import { RestaurantPage } from "./components/restaurants/RestaurantPage";
 import ReviewsForm from "./components/restaurants/ReviewsForm";
+import ReviewsEditForm from "./components/restaurants/ReviewsEditForm";
 
 const Routes = () => {
 	return (
@@ -16,6 +17,11 @@ const Routes = () => {
 			<Route exact path="/signup" component={SignUp} />
 			<Route exact path="/restaurants" component={RestaurantContainer} />
 			<Route exact path="/restaurants/review-form" component={ReviewsForm} />
+			<Route
+				exact
+				path="/restaurants/review-edit-form"
+				component={ReviewsEditForm}
+			/>
 			<Route exact path="/restaurants/:id" component={RestaurantPage} />
 		</Switch>
 	);

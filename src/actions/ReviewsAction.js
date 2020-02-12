@@ -13,6 +13,11 @@ const setCurrentReview = reviewObj => ({
 	payload: reviewObj
 });
 
+const setEditReviews = reviewObj => ({
+	type: "EDIT_REVIEW",
+	payload: reviewObj
+});
+
 // bind action creators
 
 const getReviews = restaurant => dispatch => {
@@ -48,7 +53,27 @@ const postReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
 		.then(data => dispatch(setCurrentReview(data)));
 };
 
+const editReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
+	let config = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+			Authorization: `Bearer ${localStorage.token}`
+		},
+		body: JSON.stringify({
+			comment: reviewObj.comment,
+			user_id: currentUser.id,
+			restaurant_id: currentRestaurant.id
+		})
+	};
+	fetch(BASE_URL, config)
+		.then(res => res.json())
+		.then(data => dispatch(setEditReviews(data)));
+};
+
 export default {
 	getReviews,
-	postReviews
+	postReviews,
+	editReviews
 };

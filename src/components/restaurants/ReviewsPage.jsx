@@ -1,6 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
+import reviewActions from "../../actions/ReviewsAction";
 
 const useStyles = makeStyles({
 	root: {
@@ -22,19 +25,44 @@ const useStyles = makeStyles({
 	}
 });
 const ReviewsPage = props => {
+	const dispatch = useDispatch();
 	const currentUser = useSelector(state => state.login.currentUser);
+	const currentRestaurant = useSelector(
+		state => state.restaurant.currentRestaurant
+	);
 	const classes = useStyles();
 	console.log("props: ", props);
+
+	const handleEdit = () => {};
+
+	const handleDelete = () => {};
 	return (
 		<div className={classes.root}>
 			{Object.keys(currentUser).length > 0 ? (
 				<div>
 					<p className={classes.user}>{currentUser.username}</p>
 					<p className={classes.comment}>{props.review.comment}</p>
-					<Button className={classes.button} variant="outlined">
-						Edit
+					<Button
+						// onClick={handleEdit}
+						className={classes.button}
+						variant="outlined"
+					>
+						<Link
+							style={{
+								textDecoration: "none",
+								fontWeight: "bold",
+								color: "black"
+							}}
+							to="/restaurants/review-edit-form"
+						>
+							Edit
+						</Link>
 					</Button>
-					<Button className={classes.button} variant="outlined">
+					<Button
+						onClick={handleDelete}
+						className={classes.button}
+						variant="outlined"
+					>
 						Delete
 					</Button>
 				</div>
