@@ -10,7 +10,7 @@ const setReviews = reviewObj => ({
 
 // bind action creators
 
-const getReviews = reviewObj => dispatch => {
+const getReviews = () => dispatch => {
 	let config = {
 		method: "GET",
 		headers: {

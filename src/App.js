@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { NavBarContainer } from "./components/nav-bar/NavBarContainer";
-// import { HomePage } from "./components/HomePage";
 import Routes from "./Routes";
 import userActions from "./actions/loginAction";
+import reviewActions from "./actions/ReviewsAction";
 import restaurantActions from "./actions/restaurantActions";
+
 import "./App.scss";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
 		if (localStorage.token) {
 			dispatch(userActions.persistUser());
 			dispatch(restaurantActions.fetchRestaurants());
+			dispatch(reviewActions.getReviews());
 		}
 	}, [dispatch]);
 

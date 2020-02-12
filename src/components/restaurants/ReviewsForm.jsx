@@ -29,7 +29,7 @@ const ReviewsForm = props => {
 		dispatch(
 			reviewActions.postReviews(userReview, currentUser, curentRestaurant)
 		);
-		props.history.push("/restaruants/:id");
+		props.history.goBack();
 	};
 	return (
 		<div className="form-container">
