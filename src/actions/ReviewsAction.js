@@ -4,6 +4,11 @@ const PATCH_URL = id => `${BASE_URL}/${id}`;
 
 // action creators
 const setReviews = reviewObj => ({
+	type: "GET_REVIEWS",
+	payload: reviewObj
+});
+
+const setCurrentReview = reviewObj => ({
 	type: "ADD_REVIEW",
 	payload: reviewObj
 });
@@ -38,7 +43,7 @@ const postReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
 	};
 	fetch(BASE_URL, config)
 		.then(res => res.json())
-		.then(data => dispatch(setReviews(data)));
+		.then(data => dispatch(setCurrentReview(data)));
 };
 
 export default {

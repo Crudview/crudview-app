@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 import restaurantActions from "../../actions/restaurantActions";
+import ReviewsContainer from "./ReviewsContainer";
+import reviewActions from "../../actions/ReviewsAction";
 
 const useStyles = makeStyles({
 	root: {
@@ -51,6 +54,10 @@ export const RestaurantPage = props => {
 		dispatch(restaurantActions.getCurrentRestaurant(restaurantObj));
 	};
 
+	useEffect(() => {
+		dispatch(reviewActions.getReviews());
+	}, [dispatch]);
+
 	const renderPage = () => {
 		return restaurant.map(restaurant => {
 			return (
@@ -80,6 +87,16 @@ export const RestaurantPage = props => {
 							Add Review
 						</Link>
 					</Button>
+					<h2
+						style={{
+							marginTop: "60px",
+							marginBottom: "20px",
+							textAlign: "center"
+						}}
+					>
+						Reviews Section
+					</h2>
+					<ReviewsContainer />
 				</div>
 			);
 		});
