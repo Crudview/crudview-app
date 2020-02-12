@@ -1,8 +1,9 @@
 import React from "react";
 import { RestaurantPage } from "./RestaurantPage";
+import { useDispatch } from "react-redux";
 import { makeStyles, Grid, Button } from "@material-ui/core";
 import { Link, Route } from "react-router-dom";
-
+import restaurantActions from "../../actions/restaurantActions";
 const useStyles = makeStyles({
 	root: {
 		display: "flex",
@@ -27,8 +28,14 @@ const useStyles = makeStyles({
 	}
 });
 export const RestaurantCard = props => {
+	const dispatch = useDispatch();
 	const classes = useStyles();
-
+	const handleClick = restaurant => {
+		dispatch(restaurantActions.getCurrentRestaurant(restaurant));
+		setTimeout(() => {
+			props.history.push(`/restaurants/${props.restaurant.id}`);
+		}, 2000);
+	};
 	return (
 		<div>
 			<Grid container className={classes.root} spacing={1}>
@@ -38,16 +45,20 @@ export const RestaurantCard = props => {
 					src={props.restaurant.image_url}
 					alt={props.restaurant.name}
 				/>
-				<Button className={classes.button} variant="outlined">
-					<Link
+				<Button
+					onClick={() => handleClick(props.restaurant)}
+					className={classes.button}
+					variant="outlined"
+				>
+					{/* <Link
 						style={{
 							textDecoration: "none",
 							fontWeight: "bold"
 						}}
 						to={`/restaurants/${props.restaurant.id}`}
-					>
-						Restaurant Page
-					</Link>
+					> */}
+					Restaurant Page
+					{/* </Link> */}
 				</Button>
 			</Grid>
 		</div>

@@ -5,13 +5,16 @@ import { makeStyles, Button } from "@material-ui/core";
 const useStyles = makeStyles({
 	root: {
 		padding: "20px",
-		borderBottom: "2px solid black",
-		background: "#cfc7c6"
+		borderBottom: "1px solid #e6e6e6"
 	},
 	user: {
-		fontStyle: "lighter"
+		fontStyle: "italic",
+		fontSize: "1.5rem",
+		marginLeft: "10px"
 	},
-	comment: {},
+	comment: {
+		marginLeft: "10px"
+	},
 
 	button: {
 		background: "linear-gradient(0.25turn, crimson,orange, gold);",

@@ -1,7 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import ReviewsPage from "./ReviewsPage";
+import reviewActions from "../../actions/ReviewsAction";
 
 const useStyles = makeStyles({
 	root: {
@@ -14,12 +15,22 @@ const useStyles = makeStyles({
 	}
 });
 const ReviewsContainer = props => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(reviewActions.getReviews());
+	}, [dispatch]);
 	const classes = useStyles();
 	const reviews = useSelector(state => state.review.reviews);
-	console.log("reviews: ", reviews);
+	const currentRestaurant = useSelector(
+		state => state.restaurant.currentRestaurant
+	);
+	const restaurantReviews = reviews.filter(
+		review => review.restaurant.id === currentRestaurant.id
+	);
+	console.log(restaurantReviews);
 
 	const renderReviewsPage = () => {
-		return reviews.map(review => {
+		return restaurantReviews.map(review => {
 			return <ReviewsPage key={review.id} review={review} />;
 		});
 	};

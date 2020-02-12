@@ -1,6 +1,6 @@
 // BASE URLS
 const BASE_URL = "http://localhost:3001/reviews";
-const PATCH_URL = id => `${BASE_URL}/${id}`;
+const REVIEW_URL = id => `${BASE_URL}/${id}`;
 
 // action creators
 const setReviews = reviewObj => ({
@@ -15,16 +15,18 @@ const setCurrentReview = reviewObj => ({
 
 // bind action creators
 
-const getReviews = () => dispatch => {
+const getReviews = restaurant => dispatch => {
 	let config = {
 		method: "GET",
 		headers: {
 			Authorization: `Bearer ${localStorage.token}`
 		}
 	};
-	fetch(BASE_URL, config)
+	fetch(`${BASE_URL}`, config)
 		.then(res => res.json())
-		.then(data => dispatch(setReviews(data)));
+		.then(data => {
+			dispatch(setReviews(data));
+		});
 };
 
 const postReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {

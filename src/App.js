@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { NavBarContainer } from "./components/nav-bar/NavBarContainer";
 import Routes from "./Routes";
@@ -11,13 +11,16 @@ import "./App.scss";
 
 const App = () => {
 	const dispatch = useDispatch();
+	const currentRestaurant = useSelector(
+		state => state.restaurant.currentRestaurant
+	);
 	useEffect(() => {
 		if (localStorage.token) {
 			dispatch(userActions.persistUser());
 			dispatch(restaurantActions.fetchRestaurants());
-			dispatch(reviewActions.getReviews());
+			dispatch(reviewActions.getReviews(currentRestaurant));
 		}
-	}, [dispatch]);
+	}, [currentRestaurant, dispatch]);
 
 	return (
 		<div className="App">

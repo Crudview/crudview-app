@@ -11,13 +11,17 @@ const useStyles = makeStyles({
 		flexWrap: "wrap"
 	}
 });
-export const RestaurantContainer = () => {
+export const RestaurantContainer = props => {
 	const classes = useStyles();
 	const restaurants = useSelector(state => state.restaurant.restaurants);
 	return (
 		<div className={classes.root}>
 			{restaurants.map(restaurant => (
-				<RestaurantCard key={restaurant.id} restaurant={restaurant} />
+				<RestaurantCard
+					key={restaurant.id}
+					restaurant={restaurant}
+					history={props.history}
+				/>
 			))}
 		</div>
 	);

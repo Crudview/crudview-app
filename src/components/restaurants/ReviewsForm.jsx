@@ -9,7 +9,7 @@ import "../user-auth/UserAuth.scss";
 const ReviewsForm = props => {
 	const dispatch = useDispatch();
 	const currentUser = useSelector(state => state.login.currentUser);
-	const curentRestaurant = useSelector(
+	const currentRestaurant = useSelector(
 		state => state.restaurant.currentRestaurant
 	);
 	const [userReview, setUserReview] = useState({
@@ -27,9 +27,11 @@ const ReviewsForm = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		dispatch(
-			reviewActions.postReviews(userReview, currentUser, curentRestaurant)
+			reviewActions.postReviews(userReview, currentUser, currentRestaurant)
 		);
-		props.history.goBack();
+		setTimeout(() => {
+			props.history.push(`restaurants/${currentRestaurant.id}`);
+		}, 2000);
 	};
 	return (
 		<div className="form-container">
