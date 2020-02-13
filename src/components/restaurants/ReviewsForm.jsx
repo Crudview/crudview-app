@@ -30,7 +30,7 @@ const ReviewsForm = props => {
 			reviewActions.postReviews(userReview, currentUser, currentRestaurant)
 		);
 		setTimeout(() => {
-			props.history.push(`restaurants/${currentRestaurant.id}`);
+			props.history.push(`/restaurants/${currentRestaurant.id}`);
 		}, 2000);
 	};
 	return (

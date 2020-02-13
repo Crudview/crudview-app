@@ -18,6 +18,10 @@ const setEditReviews = reviewObj => ({
 	payload: reviewObj
 });
 
+const setDeleteReview = reviewObj => ({
+	type: "Delete_Review",
+	payload: reviewObj
+});
 // bind action creators
 
 const getReviews = restaurant => dispatch => {
@@ -83,9 +87,19 @@ const currentReview = review => dispatch => {
 	dispatch(setCurrentReview(review));
 };
 
+const deleteReview = review => dispatch => {
+	let config = {
+		method: "DELETE"
+	};
+
+	fetch(`${BASE_URL}/${review.id}`, config);
+	// .then(res => res.json())
+	// .then(data => dispatch(setDeleteReview(data)));
+};
 export default {
 	getReviews,
 	postReviews,
 	editReviews,
-	currentReview
+	currentReview,
+	deleteReview
 };

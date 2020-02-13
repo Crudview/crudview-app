@@ -40,7 +40,12 @@ const ReviewsPage = props => {
 		}, 2000);
 	};
 
-	const handleDelete = () => {};
+	const handleDelete = review => {
+		dispatch(reviewActions.deleteReview(review));
+		setTimeout(() => {
+			props.history.go(`${props.history.location.pathname}`);
+		}, 2000);
+	};
 	return (
 		<div className={classes.root}>
 			{Object.keys(currentUser).length > 0 ? (
@@ -52,19 +57,10 @@ const ReviewsPage = props => {
 						className={classes.button}
 						variant="outlined"
 					>
-						{/* <Link
-							style={{
-								textDecoration: "none",
-								fontWeight: "bold",
-								color: "black"
-							}}
-							to="/restaurants/review-edit-form"
-						> */}
 						Edit
-						{/* </Link> */}
 					</Button>
 					<Button
-						onClick={handleDelete}
+						onClick={() => handleDelete(props.review)}
 						className={classes.button}
 						variant="outlined"
 					>
