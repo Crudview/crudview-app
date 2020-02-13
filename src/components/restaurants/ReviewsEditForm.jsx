@@ -4,7 +4,6 @@ import { Button } from "@material-ui/core";
 import reviewActions from "../../actions/ReviewsAction";
 
 import "../user-auth/UserAuth.scss";
-import { StaticRouter } from "react-router-dom";
 
 const ReviewsEditForm = props => {
 	const dispatch = useDispatch();

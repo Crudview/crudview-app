@@ -53,32 +53,6 @@ const postReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
 		.then(data => dispatch(setCurrentReview(data)));
 };
 
-const editReviews = (
-	reviewObj,
-	currentUser,
-	currentRestaurant,
-	currentReview
-) => dispatch => {
-	let config = {
-		method: "PATCH",
-		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json",
-			Authorization: `Bearer ${localStorage.token}`
-		},
-		body: JSON.stringify({
-			comment: reviewObj.comment,
-			user_id: currentUser.id,
-			restaurant_id: currentRestaurant.id
-		})
-	};
-	fetch(`${BASE_URL}/${currentReview.id}`, config)
-		.then(res => res.json())
-		.then(data => {
-			dispatch(setEditReviews(data));
-		});
-};
-
 const currentReview = review => dispatch => {
 	dispatch(setCurrentReview(review));
 };
@@ -91,6 +65,25 @@ const deleteReview = review => dispatch => {
 	fetch(`${BASE_URL}/${review.id}`, config);
 	// .then(res => res.json())
 	// .then(data => dispatch(setDeleteReview(data)));
+};
+
+const editReviews = (input, user, restaruant, review) => dispatch => {
+	let config = {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+			Authorization: `Bearer ${localStorage.token}`
+		},
+		body: JSON.stringify({
+			comment: input,
+			user_id: user.id,
+			restaurant_id: restaruant.id
+		})
+	};
+	fetch(`${BASE_URL}/${review.id}`, config)
+		.then(res => res.json())
+		.then(data => dispatch(setEditReviews(data)));
 };
 export default {
 	getReviews,
