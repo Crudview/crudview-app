@@ -11,8 +11,7 @@ export const reviewReducer = (state = initialState, { type, payload }) => {
 			return { ...state, currentReview: payload };
 		case "EDIT_REVIEW":
 			return { ...state, currentReview: payload };
-		case "DELETE_REVIEW":
-			return { ...state, reviews: payload };
+
 		default:
 			return state;
 	}

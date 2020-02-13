@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -26,10 +26,13 @@ const useStyles = makeStyles({
 });
 const ReviewsPage = props => {
 	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(reviewActions.getReviews());
+	}, [dispatch]);
 	const currentUser = useSelector(state => state.login.currentUser);
-	const currentRestaurant = useSelector(
-		state => state.restaurant.currentRestaurant
-	);
+	// const currentRestaurant = useSelector(
+	// 	state => state.restaurant.currentRestaurant
+	// );
 	const classes = useStyles();
 	console.log("props: ", props);
 

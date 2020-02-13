@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import ReviewsPage from "./ReviewsPage";
@@ -16,9 +16,7 @@ const useStyles = makeStyles({
 });
 const ReviewsContainer = props => {
 	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(reviewActions.getReviews());
-	}, [dispatch]);
+
 	const classes = useStyles();
 	const reviews = useSelector(state => state.review.reviews);
 	const currentRestaurant = useSelector(
@@ -27,16 +25,14 @@ const ReviewsContainer = props => {
 	const restaurantReviews = reviews.filter(
 		review => review.restaurant.id === currentRestaurant.id
 	);
-	console.log(restaurantReviews);
 
-	const renderReviewsPage = () => {
-		return restaurantReviews.map(review => {
-			return (
+	return (
+		<div className={classes.root}>
+			{restaurantReviews.map(review => (
 				<ReviewsPage key={review.id} review={review} history={props.history} />
-			);
-		});
-	};
-	return <div className={classes.root}>{renderReviewsPage()}</div>;
+			))}
+		</div>
+	);
 };
 
 export default ReviewsContainer;

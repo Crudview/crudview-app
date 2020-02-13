@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles, Button } from "@material-ui/core";
-import { useDispatch } from "react-redux";
 
 import restaurantActions from "../../actions/restaurantActions";
 import ReviewsContainer from "./ReviewsContainer";
@@ -38,13 +37,11 @@ const useStyles = makeStyles({
 	}
 });
 
-// rating: 4
-// price: "$$"
-// address: "253 W 55th St"
-// phone: "(212) 980-7909"
-
 export const RestaurantPage = props => {
 	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(reviewActions.getReviews());
+	}, [dispatch]);
 	const classes = useStyles();
 	let paramsId = parseInt(props.match.params.id, 10);
 	const restaurants = useSelector(state => state.restaurant.restaurants);
@@ -55,10 +52,6 @@ export const RestaurantPage = props => {
 			props.history.push("/restaurants/review-form");
 		}, 2000);
 	};
-
-	useEffect(() => {
-		dispatch(reviewActions.getReviews());
-	}, [dispatch]);
 
 	const renderPage = () => {
 		return restaurant.map(restaurant => {
@@ -90,7 +83,7 @@ export const RestaurantPage = props => {
 					>
 						Reviews Section
 					</h2>
-					<ReviewsContainer history={props.history} />
+					<ReviewsContainer history={props.history} />;
 				</div>
 			);
 		});

@@ -18,9 +18,9 @@ const App = () => {
 		if (localStorage.token) {
 			dispatch(userActions.persistUser());
 			dispatch(restaurantActions.fetchRestaurants());
-			dispatch(reviewActions.getReviews(currentRestaurant));
+			dispatch(reviewActions.getReviews());
 		}
-	}, [currentRestaurant, dispatch]);
+	}, [dispatch]);
 
 	return (
 		<div className="App">

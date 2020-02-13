@@ -18,13 +18,9 @@ const setEditReviews = reviewObj => ({
 	payload: reviewObj
 });
 
-const setDeleteReview = reviewObj => ({
-	type: "Delete_Review",
-	payload: reviewObj
-});
 // bind action creators
 
-const getReviews = restaurant => dispatch => {
+const getReviews = () => dispatch => {
 	let config = {
 		method: "GET",
 		headers: {
