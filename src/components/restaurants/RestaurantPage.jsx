@@ -52,6 +52,9 @@ export const RestaurantPage = props => {
 	let restaurant = restaurants.filter(restaurant => restaurant.id === paramsId);
 	const getCurrentRestaurant = restaurantObj => {
 		dispatch(restaurantActions.getCurrentRestaurant(restaurantObj));
+		setTimeout(() => {
+			props.history.push("/restaurants/review-form");
+		}, 2000);
 	};
 
 	useEffect(() => {
@@ -77,15 +80,15 @@ export const RestaurantPage = props => {
 						className={classes.button}
 						variant="outlined"
 					>
-						<Link
+						{/* <Link
 							style={{
 								textDecoration: "none",
 								fontWeight: "bold"
 							}}
 							to="/restaurants/review-form"
-						>
-							Add Review
-						</Link>
+						> */}
+						Add Review
+						{/* </Link> */}
 					</Button>
 					<h2
 						style={{
@@ -96,7 +99,7 @@ export const RestaurantPage = props => {
 					>
 						Reviews Section
 					</h2>
-					<ReviewsContainer />
+					<ReviewsContainer history={props.history} />
 				</div>
 			);
 		});

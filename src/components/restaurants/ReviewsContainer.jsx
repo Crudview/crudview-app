@@ -31,7 +31,9 @@ const ReviewsContainer = props => {
 
 	const renderReviewsPage = () => {
 		return restaurantReviews.map(review => {
-			return <ReviewsPage key={review.id} review={review} />;
+			return (
+				<ReviewsPage key={review.id} review={review} history={props.history} />
+			);
 		});
 	};
 	return <div className={classes.root}>{renderReviewsPage()}</div>;

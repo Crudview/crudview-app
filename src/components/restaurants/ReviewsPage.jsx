@@ -33,7 +33,12 @@ const ReviewsPage = props => {
 	const classes = useStyles();
 	console.log("props: ", props);
 
-	const handleEdit = () => {};
+	const handleEdit = review => {
+		dispatch(reviewActions.currentReview(review));
+		setTimeout(() => {
+			props.history.push("/restaurants/review-edit-form");
+		}, 2000);
+	};
 
 	const handleDelete = () => {};
 	return (
@@ -43,20 +48,20 @@ const ReviewsPage = props => {
 					<p className={classes.user}>{currentUser.username}</p>
 					<p className={classes.comment}>{props.review.comment}</p>
 					<Button
-						// onClick={handleEdit}
+						onClick={() => handleEdit(props.review)}
 						className={classes.button}
 						variant="outlined"
 					>
-						<Link
+						{/* <Link
 							style={{
 								textDecoration: "none",
 								fontWeight: "bold",
 								color: "black"
 							}}
 							to="/restaurants/review-edit-form"
-						>
-							Edit
-						</Link>
+						> */}
+						Edit
+						{/* </Link> */}
 					</Button>
 					<Button
 						onClick={handleDelete}

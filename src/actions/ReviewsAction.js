@@ -53,9 +53,14 @@ const postReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
 		.then(data => dispatch(setCurrentReview(data)));
 };
 
-const editReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
+const editReviews = (
+	reviewObj,
+	currentUser,
+	currentRestaurant,
+	currentReview
+) => dispatch => {
 	let config = {
-		method: "POST",
+		method: "PATCH",
 		headers: {
 			"Content-Type": "application/json",
 			Accept: "application/json",
@@ -67,13 +72,20 @@ const editReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
 			restaurant_id: currentRestaurant.id
 		})
 	};
-	fetch(BASE_URL, config)
+	fetch(`${BASE_URL}/${currentReview.id}`, config)
 		.then(res => res.json())
-		.then(data => dispatch(setEditReviews(data)));
+		.then(data => {
+			dispatch(setEditReviews(data));
+		});
+};
+
+const currentReview = review => dispatch => {
+	dispatch(setCurrentReview(review));
 };
 
 export default {
 	getReviews,
 	postReviews,
-	editReviews
+	editReviews,
+	currentReview
 };

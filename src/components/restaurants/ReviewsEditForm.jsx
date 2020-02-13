@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
-
 import reviewActions from "../../actions/ReviewsAction";
 
 import "../user-auth/UserAuth.scss";
+import { StaticRouter } from "react-router-dom";
 
 const ReviewsEditForm = props => {
 	const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const ReviewsEditForm = props => {
 	const currentRestaurant = useSelector(
 		state => state.restaurant.currentRestaurant
 	);
+	const currentReview = useSelector(state => state.review.currentReview);
 	const [userReview, setUserReview] = useState({
 		comment: ""
 	});
@@ -22,15 +23,19 @@ const ReviewsEditForm = props => {
 			...userReview,
 			[e.target.name]: e.target.value
 		});
-		console.log(userReview);
 	};
 	const handleSubmit = e => {
 		e.preventDefault();
 		dispatch(
-			reviewActions.editReviews(userReview, currentUser, currentRestaurant)
+			reviewActions.editReviews(
+				userReview,
+				currentUser,
+				currentRestaurant,
+				currentReview
+			)
 		);
 		setTimeout(() => {
-			props.history.push(`restaurants/${currentRestaurant.id}`);
+			props.history.push(`/restaurants/${currentRestaurant.id}`);
 		}, 2000);
 	};
 	return (
