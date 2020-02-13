@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import restaurantActions from "../../actions/restaurantActions";
@@ -80,15 +79,7 @@ export const RestaurantPage = props => {
 						className={classes.button}
 						variant="outlined"
 					>
-						{/* <Link
-							style={{
-								textDecoration: "none",
-								fontWeight: "bold"
-							}}
-							to="/restaurants/review-form"
-						> */}
 						Add Review
-						{/* </Link> */}
 					</Button>
 					<h2
 						style={{

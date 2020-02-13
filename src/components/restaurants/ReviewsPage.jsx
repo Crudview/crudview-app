@@ -48,9 +48,9 @@ const ReviewsPage = props => {
 	};
 	return (
 		<div className={classes.root}>
-			{Object.keys(currentUser).length > 0 ? (
+			{currentUser.username === props.review.user.username ? (
 				<div>
-					<p className={classes.user}>{currentUser.username}</p>
+					<p className={classes.user}>{props.review.user.username}</p>
 					<p className={classes.comment}>{props.review.comment}</p>
 					<Button
 						onClick={() => handleEdit(props.review)}
@@ -69,7 +69,7 @@ const ReviewsPage = props => {
 				</div>
 			) : (
 				<div>
-					<p className={classes.user}>{currentUser.username}</p>
+					<p className={classes.user}>{props.review.user.username}</p>
 					<p className={classes.comment}>{props.review.comment}</p>
 				</div>
 			)}
