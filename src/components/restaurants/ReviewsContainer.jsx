@@ -15,16 +15,16 @@ const useStyles = makeStyles({
 	}
 });
 const ReviewsContainer = props => {
-	// const dispatch = useDispatch();
-
-	const classes = useStyles();
-
+	const reviews = useSelector(state => state.review.reviews);
 	const currentRestaurant = useSelector(
 		state => state.restaurant.currentRestaurant
 	);
-	const restaurantReviews = props.reviews.filter(
+
+	const restaurantReviews = reviews.filter(
 		review => review.restaurant.id === currentRestaurant.id
 	);
+
+	const classes = useStyles();
 
 	return (
 		<div className={classes.root}>

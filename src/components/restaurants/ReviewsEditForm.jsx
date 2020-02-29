@@ -17,7 +17,6 @@ const ReviewsEditForm = props => {
 	});
 
 	const handleChange = e => {
-		console.log("WRITING!");
 		setUserReview({
 			...userReview,
 			[e.target.name]: e.target.value
@@ -25,14 +24,8 @@ const ReviewsEditForm = props => {
 	};
 	const handleSubmit = e => {
 		e.preventDefault();
-		dispatch(
-			reviewActions.editReviews(
-				userReview,
-				currentUser,
-				currentRestaurant,
-				currentReview
-			)
-		);
+
+		dispatch(reviewActions.editReviews(userReview, currentReview));
 		setTimeout(() => {
 			props.history.push(`/restaurants/${currentRestaurant.id}`);
 		}, 2000);

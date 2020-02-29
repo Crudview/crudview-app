@@ -52,7 +52,6 @@ export const RestaurantPage = props => {
 			props.history.push("/restaurants/review-form");
 		}, 2000);
 	};
-	const reviews = useSelector(state => state.review.reviews);
 
 	const renderPage = () => {
 		return restaurant.map(restaurant => {
@@ -84,10 +83,14 @@ export const RestaurantPage = props => {
 					>
 						Reviews Section
 					</h2>
-					<ReviewsContainer reviews={reviews} history={props.history} />;
 				</div>
 			);
 		});
 	};
-	return <div className={classes.root}>{renderPage()}</div>;
+	return (
+		<div className={classes.root}>
+			{renderPage()}
+			<ReviewsContainer history={props.history} />
+		</div>
+	);
 };

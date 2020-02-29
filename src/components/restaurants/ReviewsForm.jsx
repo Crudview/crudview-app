@@ -17,18 +17,17 @@ const ReviewsForm = props => {
 	});
 
 	const handleChange = e => {
-		console.log("WRITING!");
 		setUserReview({
 			...userReview,
 			[e.target.name]: e.target.value
 		});
-		console.log(userReview);
 	};
 	const handleSubmit = e => {
 		e.preventDefault();
 		dispatch(
 			reviewActions.postReviews(userReview, currentUser, currentRestaurant)
 		);
+
 		setTimeout(() => {
 			props.history.push(`/restaurants/${currentRestaurant.id}`);
 		}, 2000);

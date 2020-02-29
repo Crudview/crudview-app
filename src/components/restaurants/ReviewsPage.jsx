@@ -30,24 +30,19 @@ const ReviewsPage = props => {
 		dispatch(reviewActions.getReviews());
 	}, [dispatch]);
 	const currentUser = useSelector(state => state.login.currentUser);
-	// const currentRestaurant = useSelector(
-	// 	state => state.restaurant.currentRestaurant
-	// );
 	const classes = useStyles();
 	console.log("props: ", props);
 
 	const handleEdit = review => {
 		dispatch(reviewActions.currentReview(review));
-		setTimeout(() => {
-			props.history.push("/restaurants/review-edit-form");
-		}, 2000);
+
+		props.history.push("/restaurants/review-edit-form");
 	};
 
 	const handleDelete = review => {
 		dispatch(reviewActions.deleteReview(review));
-		setTimeout(() => {
-			props.history.go(`${props.history.location.pathname}`);
-		}, 2000);
+
+		props.history.go(`${props.history.location.pathname}`);
 	};
 	return (
 		<div className={classes.root}>

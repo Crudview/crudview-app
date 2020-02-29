@@ -11,14 +11,14 @@ import "./App.scss";
 
 const App = () => {
 	const dispatch = useDispatch();
-	const currentRestaurant = useSelector(
-		state => state.restaurant.currentRestaurant
-	);
+	const currentUser = useSelector(state => state.login.currentUser);
 	useEffect(() => {
 		if (localStorage.token) {
 			dispatch(userActions.persistUser());
 			dispatch(restaurantActions.fetchRestaurants());
 			dispatch(reviewActions.getReviews());
+			dispatch(restaurantActions.persistCurrentRestaurant());
+			dispatch(reviewActions.persistReviews());
 		}
 	}, [dispatch]);
 

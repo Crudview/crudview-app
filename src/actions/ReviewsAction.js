@@ -31,6 +31,7 @@ const getReviews = () => dispatch => {
 		.then(res => res.json())
 		.then(data => {
 			dispatch(setReviews(data));
+			localStorage.setItem("currentReview", JSON.stringify(data));
 		});
 };
 
@@ -50,7 +51,9 @@ const postReviews = (reviewObj, currentUser, currentRestaurant) => dispatch => {
 	};
 	fetch(BASE_URL, config)
 		.then(res => res.json())
-		.then(data => dispatch(setCurrentReview(data)));
+		.then(data => {
+			dispatch(setCurrentReview(data));
+		});
 };
 
 const currentReview = review => dispatch => {
@@ -63,11 +66,9 @@ const deleteReview = review => dispatch => {
 	};
 
 	fetch(`${BASE_URL}/${review.id}`, config);
-	// .then(res => res.json())
-	// .then(data => dispatch(setDeleteReview(data)));
 };
 
-const editReviews = (input, user, restaruant, review) => dispatch => {
+const editReviews = (userInput, review) => dispatch => {
 	let config = {
 		method: "PATCH",
 		headers: {
@@ -76,19 +77,40 @@ const editReviews = (input, user, restaruant, review) => dispatch => {
 			Authorization: `Bearer ${localStorage.token}`
 		},
 		body: JSON.stringify({
-			comment: input,
-			user_id: user.id,
-			restaurant_id: restaruant.id
+			comment: userInput.comment,
+			user_id: review.user.id,
+			restaurant_id: review.restaurant.id
 		})
 	};
 	fetch(`${BASE_URL}/${review.id}`, config)
 		.then(res => res.json())
-		.then(data => dispatch(setEditReviews(data)));
+		.then(data => {
+			dispatch(setCurrentReview(data));
+		});
+};
+
+const persistReviews = () => dispatch => {
+	let config = {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer ${localStorage.token}`
+		}
+	};
+	let choseReviews = JSON.parse(localStorage.currentRestaurant);
+	fetch(`${BASE_URL}`, config)
+		.then(review => review.json())
+		.then(data => {
+			let restaurantReviews = data.filter(
+				review => review.restaurant.id === choseReviews.id
+			);
+			dispatch(setReviews(restaurantReviews));
+		});
 };
 export default {
 	getReviews,
 	postReviews,
 	editReviews,
 	currentReview,
-	deleteReview
+	deleteReview,
+	persistReviews
 };

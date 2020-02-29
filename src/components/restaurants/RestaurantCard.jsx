@@ -1,8 +1,8 @@
 import React from "react";
-import { RestaurantPage } from "./RestaurantPage";
+
 import { useDispatch } from "react-redux";
 import { makeStyles, Grid, Button } from "@material-ui/core";
-import { Link, Route } from "react-router-dom";
+
 import restaurantActions from "../../actions/restaurantActions";
 const useStyles = makeStyles({
 	root: {
@@ -50,15 +50,7 @@ export const RestaurantCard = props => {
 					className={classes.button}
 					variant="outlined"
 				>
-					{/* <Link
-						style={{
-							textDecoration: "none",
-							fontWeight: "bold"
-						}}
-						to={`/restaurants/${props.restaurant.id}`}
-					> */}
 					Restaurant Page
-					{/* </Link> */}
 				</Button>
 			</Grid>
 		</div>

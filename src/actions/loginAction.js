@@ -55,9 +55,10 @@ const persistUser = () => dispatch => {
 			Authorization: `bearer ` + localStorage.token
 		}
 	};
-	fetch(PERSIST_URL, config)
+	fetch("http://localhost:3001/auth", config)
 		.then(r => r.json())
 		.then(userInstance => {
+			console.log(userInstance);
 			dispatch(setUserAction(userInstance));
 		});
 };

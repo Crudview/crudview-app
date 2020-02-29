@@ -33,9 +33,27 @@ const fetchRestaurants = () => dispatch => {
 
 const getCurrentRestaurant = restaurantObj => dispatch => {
 	dispatch(currentRestaurant(restaurantObj));
+	localStorage.setItem("currentRestaurant", JSON.stringify(restaurantObj));
+};
+
+const persistCurrentRestaurant = () => dispatch => {
+	const config = {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer ${localStorage.token}`
+		}
+	};
+	let restaurant = JSON.parse(localStorage.currentRestaurant);
+
+	fetch(`http://localhost:3001/restaurants/${restaurant.id}`)
+		.then(res => res.json())
+		.then(restaurantObj => {
+			dispatch(currentRestaurant(restaurantObj));
+		});
 };
 
 export default {
 	fetchRestaurants,
-	getCurrentRestaurant
+	getCurrentRestaurant,
+	persistCurrentRestaurant
 };

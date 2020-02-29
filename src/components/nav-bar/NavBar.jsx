@@ -16,7 +16,7 @@ export const NavBar = () => {
 
 	return (
 		<div>
-			{Object.keys(currentUser).length > 0 ? (
+			{currentUser.username ? (
 				<ul>
 					<Button onClick={handleLogOut} variant="outlined">
 						<Link to="/login">
