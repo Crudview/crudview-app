@@ -11,7 +11,6 @@ import "./App.scss";
 
 const App = () => {
 	const dispatch = useDispatch();
-	const currentUser = useSelector(state => state.login.currentUser);
 	useEffect(() => {
 		if (localStorage.token) {
 			dispatch(userActions.persistUser());

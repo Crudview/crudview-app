@@ -7,7 +7,7 @@ import userActions from "../../actions/loginAction";
 import "./NavBar.scss";
 
 export const NavBar = () => {
-	const currentUser = useSelector(state => state.login.currentUser);
+	const currentUser = useSelector((state) => state.login.currentUser);
 
 	const dispatch = useDispatch();
 	const handleLogOut = () => {

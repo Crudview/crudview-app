@@ -5,13 +5,14 @@ import "./HomePage.scss";
 
 const useStyles = makeStyles({
 	button: {
+		display: "block",
 		background: "linear-gradient(0.25turn, crimson,orange, gold)",
-		margin: "20px auto 10px 22.5%",
+		margin: "20px auto 10px auto",
 		width: "60%",
-		borderRadius: "10px"
-	}
+		borderRadius: "10px",
+	},
 });
-export const HomePage = props => {
+export const HomePage = (props) => {
 	const classes = useStyles();
 
 	const handleClick = () => {
@@ -22,8 +23,7 @@ export const HomePage = props => {
 			<h1
 				style={{
 					textAlign: "center",
-					marginLeft: "80px",
-					color: "crimson"
+					color: "crimson",
 				}}
 			>
 				Welcome To Crudview
