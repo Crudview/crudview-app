@@ -6,29 +6,29 @@ import reviewActions from "../../actions/ReviewsAction";
 
 const useStyles = makeStyles({
 	root: {
-		margin: "20px auto 20px 112px",
+		margin: "20px auto 20px auto",
 		width: "80%",
 		border: "5px solid crimson",
 		display: "flex",
 		flexDirection: "column",
-		borderRadius: "10px"
-	}
+		borderRadius: "10px",
+	},
 });
-const ReviewsContainer = props => {
-	const reviews = useSelector(state => state.review.reviews);
-	const currentRestaurant = useSelector(
-		state => state.restaurant.currentRestaurant
+const ReviewsContainer = (props) => {
+	// const currentRestaurant = useSelector(
+	// 	(state) => state.restaurant.currentRestaurant
+	// );
+
+	const restaurantReviews = useSelector(
+		(state) => state.review.restaurantReviews
 	);
 
-	const restaurantReviews = reviews.filter(
-		review => review.restaurant.id === currentRestaurant.id
-	);
+	// debugger;
 
 	const classes = useStyles();
-
 	return (
 		<div className={classes.root}>
-			{restaurantReviews.map(review => (
+			{restaurantReviews.map((review) => (
 				<ReviewsPage key={review.id} review={review} history={props.history} />
 			))}
 		</div>

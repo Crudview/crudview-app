@@ -16,8 +16,8 @@ const App = () => {
 			dispatch(userActions.persistUser());
 			dispatch(restaurantActions.fetchRestaurants());
 			dispatch(reviewActions.getReviews());
-			dispatch(restaurantActions.persistCurrentRestaurant());
-			dispatch(reviewActions.persistReviews());
+			// dispatch(restaurantActions.persistCurrentRestaurant());
+			// dispatch(reviewActions.persistReviews());
 		}
 	}, [dispatch]);
 

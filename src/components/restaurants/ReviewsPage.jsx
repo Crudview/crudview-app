@@ -1,56 +1,58 @@
-import React, { useEffect } from "react";
+import React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 import reviewActions from "../../actions/ReviewsAction";
 
 const useStyles = makeStyles({
 	root: {
 		padding: "20px",
-		borderBottom: "1px solid #e6e6e6"
+		borderBottom: "1px solid #e6e6e6",
 	},
 	user: {
 		fontStyle: "italic",
 		fontSize: "1.5rem",
-		marginLeft: "10px"
+		marginLeft: "10px",
 	},
 	comment: {
-		marginLeft: "10px"
+		marginLeft: "10px",
 	},
 
 	button: {
 		background: "linear-gradient(0.25turn, crimson,orange, gold);",
-		marginLeft: "10px"
-	}
+		marginLeft: "10px",
+	},
 });
-const ReviewsPage = props => {
+const ReviewsPage = (props) => {
+	console.log(props.review);
 	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(reviewActions.getReviews());
-	}, [dispatch]);
-	const currentUser = useSelector(state => state.login.currentUser);
+	const currentUser = useSelector((state) => state.login.currentUser);
+	// const restaurantReviews = useSelector(
+	// 	(state) => state.review.restaurantReviews
+	// );
 	const classes = useStyles();
-	console.log("props: ", props);
 
-	const handleEdit = review => {
+	const handleEdit = (review) => {
 		dispatch(reviewActions.currentReview(review));
-
 		props.history.push("/restaurants/review-edit-form");
 	};
 
-	const handleDelete = review => {
+	const handleDelete = (review) => {
 		dispatch(reviewActions.deleteReview(review));
-
-		props.history.go(`${props.history.location.pathname}`);
+		setTimeout(() => {
+			props.history.go(`${props.history.location.pathname}`);
+		}, 1000);
 	};
+
 	return (
-		<div className={classes.root}>
+		<div id={props.review.id} className={classes.root}>
 			{currentUser.username === props.review.user.username ? (
 				<div>
 					<p className={classes.user}>{props.review.user.username}</p>
 					<p className={classes.comment}>{props.review.comment}</p>
 					<Button
+						// type="submit"
 						onClick={() => handleEdit(props.review)}
 						className={classes.button}
 						variant="outlined"
@@ -58,6 +60,7 @@ const ReviewsPage = props => {
 						Edit
 					</Button>
 					<Button
+						// type="submit"
 						onClick={() => handleDelete(props.review)}
 						className={classes.button}
 						variant="outlined"

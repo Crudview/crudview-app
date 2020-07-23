@@ -8,33 +8,32 @@ const useStyles = makeStyles({
 	root: {
 		display: "flex",
 		flexDirection: "column",
-		margin: "100px auto 0 80px",
+		margin: "100px auto 0px 60px",
 		width: "400px",
 		border: "5px groove gold",
-		padding: "20px"
+		padding: "20px",
 	},
 	header: {
 		margin: "0 auto",
-		color: "crimson"
+		color: "crimson",
+		fontSize: "18px",
 	},
 	cardImage: {
 		margin: "10px auto 10px auto",
 		width: "350px",
 		height: "300px",
-		borderRadius: "20px"
+		borderRadius: "20px",
 	},
 	button: {
-		background: "linear-gradient(0.25turn, crimson,orange, gold);"
-	}
+		background: "linear-gradient(0.25turn, crimson,orange, gold);",
+	},
 });
-export const RestaurantCard = props => {
+export const RestaurantCard = (props) => {
 	const dispatch = useDispatch();
 	const classes = useStyles();
-	const handleClick = restaurant => {
+	const handleClick = (restaurant) => {
 		dispatch(restaurantActions.getCurrentRestaurant(restaurant));
-		setTimeout(() => {
-			props.history.push(`/restaurants/${props.restaurant.id}`);
-		}, 2000);
+		props.history.push(`/restaurants/${props.restaurant.id}`);
 	};
 	return (
 		<div>

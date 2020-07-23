@@ -1,6 +1,7 @@
 const initialState = {
 	reviews: [],
-	currentReview: {}
+	currentReview: {},
+	restaurantReviews: [],
 };
 
 export const reviewReducer = (state = initialState, { type, payload }) => {
@@ -11,6 +12,8 @@ export const reviewReducer = (state = initialState, { type, payload }) => {
 			return { ...state, currentReview: payload };
 		case "EDIT_REVIEW":
 			return { ...state, currentReview: payload };
+		case "SET_RESTAURANT_REVIEWS":
+			return { ...state, restaurantReviews: payload };
 
 		default:
 			return state;
