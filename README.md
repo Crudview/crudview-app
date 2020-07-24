@@ -7,7 +7,7 @@ Crudview is acrowd-sourced local business review where users can submit a review
 I built this application using React/Redux for the frontend and Ruby on Rails for the backend, with PostgreSQL to manage the database. I used active model serializer to format my JSON responses, and implemented JSON web user authentication using JSON Web Tokens and the BCrypt library to one-way encrypt user passwords. All styling was accomplished with Sass-compiled CSS and Material UI. Integrated a list of 100 Chinatown restaurants by pulling data from Yelps REST API.
 
 
-### Webstite Link: [Crwn Clothing](https://crudview.herokuapp.com/)
+### Webstite Link: [Crudview](https://crudview.herokuapp.com/)
 
 
 
@@ -23,5 +23,5 @@ I built this application using React/Redux for the frontend and Ruby on Rails fo
 
 
 
-### Webstite Link: [Crwn Clothing Demo](https://www.youtube.com/watch?v=p1oKEfkNmiI&feature=youtu.be)
+### Webstite Link: [Crudview Demo](https://www.youtube.com/watch?v=p1oKEfkNmiI&feature=youtu.be)
 
